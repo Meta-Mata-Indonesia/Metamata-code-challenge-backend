@@ -16,3 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
+
+Route::get('cerita/create',[App\Http\Controllers\CeritaController::class,'create'])->name('tulisCerita')->middleware('auth');
+Route::post('cerita/store', [App\Http\Controllers\CeritaController::class,'store'])->name('simpanCerita')->middleware('auth');
+
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
