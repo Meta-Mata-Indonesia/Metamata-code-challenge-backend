@@ -23,6 +23,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('cerita/create',[App\Http\Controllers\CeritaController::class,'create'])->name('tulisCerita')->middleware('auth');
 Route::post('cerita/store', [App\Http\Controllers\CeritaController::class,'store'])->name('simpanCerita')->middleware('auth');
+Route::post('cerita/like', [App\Http\Controllers\HomeController::class,'like'])->name('sukaiCerita')->middleware('auth');
 
 // Auth::routes();
 

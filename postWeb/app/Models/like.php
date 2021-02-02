@@ -16,8 +16,8 @@ class like extends Model
      * @var array
      */
     protected $fillable = [
-        'count_likes',
-        'story',
+        'isLiked',
+        'cerita_id',
         'user_id',
         'updated_at',
         'created_at',
@@ -25,6 +25,10 @@ class like extends Model
 
 
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class);
+    }
+
+    public function cerita(){
+        return $this->belongsToMany(Cerita::class);
     }
 }

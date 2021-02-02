@@ -15,13 +15,15 @@ class Like extends Migration
     {
         Schema::create('likes', function (Blueprint $table) {
             $table->id();
-            $table->boolean('isLiked');
+            $table->boolean('isLiked')->default(0);
             $table->timestamps();
         });
 
         Schema::table('likes', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('cerita_id');
+            $table->foreign('cerita_id')->references('id')->on('ceritas');
         });
     }
 

@@ -10,15 +10,15 @@
         </div>
         <div class="col-md-8">
             @if (session('status'))
-            <div class="alert alert-success alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                {{ session('status') }}
-                {{ __('You are logged in!') }}
+            <div class="alert alert-primary">
+                <h4>{{ session('status') }}</h4>
             </div>
             @endif
+            <br>
 
             @foreach($storyList as $stories)
             <div class="card">
+
 
                 <div class="card-header bg-light">
                     <div class="float-left">
@@ -42,13 +42,18 @@
 
                 <div class="card-body">
                     <p>{{ $stories->story }}</p><br>
-                    <div>
-                        <button type="button" class="btn btn-light">
-                            <i class="icon-heart"></i>
-                        </button>
-                        <p>likes!</p>
-                    </div>
-
+                    <form action="{{ route('sukaiCerita')}}" method="POST">
+                        @csrf
+                        <input type="hidden" class="form-control" name="cerita_id" placeholder="Masukkan Judul" value="{{ $stories->id}}">
+                        <div class="form-group">
+                            <div>
+                                <button type="submit" class="btn btn-pink">
+                                    <i class="icon-heart"></i>
+                                    <p>Like</p>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
 
             </div>
